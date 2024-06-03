@@ -1,0 +1,20 @@
+{
+  "name": "bloggin-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-decoupled-document": "^41.4.2",
+    "ckeditor5": "^41.4.2",
+    "express-fileupload": "^1.2.1",
+    "express.js": "^1.0.0",
+    "firebase": "^10.12.1",
+    "firebaseui": "^6.1.0",
+    "nodemon": "^2.0.12"
+  }
+}
