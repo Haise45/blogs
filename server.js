@@ -59,7 +59,7 @@ app.get("/admin", (req, res) => {
 
 // Định nghĩa route GET "/signup" để trả về trang đăng ký (signup.html)
 app.get("/signup", (req, res) => {
-    res.sendFile(path.join(initial_path, "dashboard.html"));
+    res.sendFile(path.join(initial_path, "signup.html"));
 })
 
 // Định nghĩa route GET "/:blog" để trả về trang blog (blog.html) hoặc trang chỉnh sửa blog (editor.html)

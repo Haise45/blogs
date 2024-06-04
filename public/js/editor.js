@@ -123,32 +123,22 @@ const uploadImage = (uploadFile, uploadType) => {
   }
 };
 
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 // Xử lý sự kiện nút Publish
 publishBtn.addEventListener("click", () => {
+  // Kiểm tra xem có nội dung bài viết và tiêu đề blog không
   if (window.articleEditor.getData().length && blogTitleField.value.length) {
+    // Nếu không có ảnh banner, hiển thị cảnh báo và dừng
     if (!bannerPath) {
       alert("Bạn cần phải upload ảnh banner!");
       return;
     }
 
     let docName;
+    // Nếu blogID bắt đầu bằng "editor", tạo ID ngẫu nhiên
     if (blogID[0] === "editor") {
-      // Tạo ID ngẫu nhiên nếu trong trình soạn thảo
+      // Tạo ID ngẫu nhiên từ các ký tự chữ cái
       const letters = "abcdefghijklmnopqrstuvwxyz";
       const blogTitle = blogTitleField.value.split(" ").join("-");
       let id = "";
@@ -157,16 +147,17 @@ publishBtn.addEventListener("click", () => {
       }
       docName = `${blogTitle}-${id}`;
     } else {
+      // Sử dụng blogID đã tồn tại
       docName = decodeURI(blogID[0]);
     }
 
     const date = new Date(); // Ngày xuất bản
 
-    // Lấy UID của người dùng hiện tại
+    // Lấy UID của người dùng hiện tại và email
     const userUID = auth.currentUser.uid;
     const currentUserEmail = auth.currentUser.email.split("@")[0];
 
-    // Truy cập Firestore với db
+    // Tạo dữ liệu của blog để lưu vào Firestore
     const blogData = {
       title: blogTitleField.value,
       article: window.articleEditor.getData(),
@@ -174,25 +165,32 @@ publishBtn.addEventListener("click", () => {
       publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`,
     };
 
+    // Tham chiếu đến tài liệu trong Firestore
     const docRef = db.collection("blogs").doc(docName);
 
+    // Kiểm tra nếu tài liệu tồn tại
     docRef.get().then((doc) => {
       if (doc.exists) {
+        // Nếu tồn tại, kiểm tra người viết có phải là admin không
         const data = doc.data();
         if (userUID === "ZjM8lAWolkaSBvbA0B536Jf5Ws42") {
           blogData.author = data.author;
           blogData.userUID = data.userUID;
         } else {
+          // Nếu không phải admin, sử dụng email và UID của người viết hiện tại
           blogData.author = currentUserEmail;
           blogData.userUID = userUID;
         }
       } else {
+        // Nếu không tồn tại, sử dụng email và UID của người viết hiện tại
         blogData.author = currentUserEmail;
         blogData.userUID = userUID;
       }
 
+      // Lưu dữ liệu của blog vào Firestore
       docRef.set(blogData)
         .then(() => {
+          // Chuyển hướng đến trang của bài viết
           location.href = `/${docName}`;
         })
         .catch((err) => {
@@ -200,9 +198,11 @@ publishBtn.addEventListener("click", () => {
         });
     });
   } else {
+    // Nếu thiếu thông tin, hiển thị cảnh báo
     alert("Điền đủ thông tin Tiêu đề và nội dung Blog.");
   }
 });
+
 
 // Kiểm tra người dùng đã đăng nhập chưa
 auth.onAuthStateChanged((user) => {

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Cấu hình tương thích với IE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Cấu hình viewport -->
     <!-- Tiêu đề trang -->
-    <title>Dashboard</title>
+    <title>Sign Up</title>
     <!-- Liên kết đến tệp CSS cho FirebaseUI Auth -->
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Liên kết đến các tệp CSS tùy chỉnh -->
@@ -32,14 +32,15 @@
         </ul>
     </nav>
     <!-- Tiêu đề "your blogs" cho bảng điều khiển -->
-    <h1 class="heading">your blogs</h1>   
-    <!-- Phần đăng nhập -->
-    <div class="login">
-        <h2>Login</h2>
-        <input type="text" id="username" placeholder="Email" />
-        <input type="password" id="password" placeholder="Password" />
-        <button id="loginButton">Login</button>
-        <p>Don't have an account ? <a href="/signup" id="signupLink">Sign up here</a></p>
+    <h1 class="heading">your blogs</h1>
+    <!-- Phần đăng ký -->
+    <div class="signup">
+        <h2>Sign Up</h2>
+        <input type="text" id="username-signup" placeholder="Email" />
+        <input type="password" id="password-signup" placeholder="Password" />
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" />
+        <button id="signupButton">Sign Up</button>
+        <p>Already have an account ? <a href="/admin" id="loginLink">Login here</a></p>
     </div>
     <!-- Phần hiển thị danh sách các blog -->
     <section class="blogs-section">
