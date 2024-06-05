@@ -77,6 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "tableProperties",
       ],
     },
+    wordCount: {
+      container: document.querySelector('.word-count-container'),
+      displayWords: true,
+      displayCharacters: true,
+    },
   })
     .then((editor) => {
       window.articleEditor = editor;

@@ -3,15 +3,10 @@ let ui = new firebaseui.auth.AuthUI(auth);
 
 // Lấy ra phần tử HTML một lần và sử dụng chúng sau đó
 const login = document.querySelector('.login');
-const signup = document.querySelector('.signup');
 const blogSection = document.querySelector('.blogs-section');
 const loginButton = document.getElementById("loginButton");
-const signupButton = document.getElementById("signupButton");
 const usernameField = document.getElementById("username");
 const passwordField = document.getElementById("password");
-const usernameSignupField = document.getElementById("username-signup");
-const passwordSignupField = document.getElementById("password-signup");
-const confirmPasswordField = document.getElementById("confirmPassword");
 
 // Lắng nghe sự kiện cuộn trang
 window.addEventListener('scroll', () => {
@@ -60,7 +55,6 @@ auth.onAuthStateChanged((user) => {
 
 // Hàm xử lý sự kiện khi người dùng nhấn nút "Login"
 loginButton.addEventListener("click", handleLogin);
-signupButton.addEventListener("click", handleSignup);
 
 // Hàm xóa một blog với xác nhận
 function deleteBlog(id) {
@@ -187,44 +181,6 @@ function handleLogin() {
             console.error("Lỗi đăng nhập:", errorCode, errorMessage);
         });
 }
-
-// Hàm xử lý sự kiện khi người dùng nhấn nút "Signup"
-function handleSignup() {
-    const email = usernameSignupField.value;
-    const password = passwordSignupField.value;
-    const confirmPassword = confirmPasswordField.value;
-  
-    if (password !== confirmPassword) {
-      alert('Passwords do not match.');
-      return;
-    }
-  
-    // Tạo mới người dùng với Authentication của Firebase
-    auth.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const userUID = userCredential.user.uid;
-  
-        // Lưu thông tin người dùng vào db
-        return db.collection("users").doc(userUID).set({
-          email: email,
-          userUID: userUID,
-          password: password,
-          createdAt: new Date().toISOString()
-        });
-      })
-      .then(() => {
-        alert("Đăng ký thành công");
-        location.reload();
-      })
-      .catch((error) => {
-        if (error.code === 'auth/email-already-in-use') {
-          alert("Email đã được đăng ký. Vui lòng nhập lại email");
-        } else {
-          console.error("Error during signup or adding user data to Firestore: ", error);
-          alert(error.message);
-        }
-      });
-  }
 
 // Hiển thị form đăng nhập
 function showLoginForm() {
