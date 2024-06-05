@@ -125,3 +125,9 @@ textarea::-webkit-scrollbar-thumb {
 .blog {
     z-index: 1; /* Đặt z-index thấp hơn cho phần blog */
 }
+
+.word-count-container {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
