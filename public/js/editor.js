@@ -208,7 +208,6 @@ publishBtn.addEventListener("click", () => {
   }
 });
 
-
 // Kiểm tra người dùng đã đăng nhập chưa
 auth.onAuthStateChanged((user) => {
   if (!user) {
