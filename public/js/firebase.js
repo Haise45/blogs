@@ -1,13 +1,13 @@
 
 // Khai báo cấu hình Firebase cho dự án của bạn
 const firebaseConfig = {
-    apiKey: "AIzaSyB8fsOAjbDVWFeejl9k421PILx_zBnHUmI",
-    authDomain: "blogging-b144d.firebaseapp.com",
-    projectId: "blogging-b144d",
-    storageBucket: "blogging-b144d.appspot.com",
-    messagingSenderId: "262381480904",
-    appId: "1:262381480904:web:039f07744f2500f4c1eefd",
-    measurementId: "G-HLWT16EX9E"
+    apiKey: "AIzaSyCItQ4EcIGAnOZ6uy6D3TC-1bo4exO9gX4",
+    authDomain: "blogging-ed0a6.firebaseapp.com",
+    projectId: "blogging-ed0a6",
+    storageBucket: "blogging-ed0a6.appspot.com",
+    messagingSenderId: "1010057120740",
+    appId: "1:1010057120740:web:3b1804eaa896c3106bd5f1",
+    measurementId: "G-5XD7C3TPVM"
 };
 
 // Khởi tạo Firebase với cấu hình dự án
